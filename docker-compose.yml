@@ -4,6 +4,8 @@ services:
   app:
     build:
       context: .
+      args:
+        - PORT=${APP_PORT}
     restart: always
     ports: 
       - ${APP_PORT}:80
