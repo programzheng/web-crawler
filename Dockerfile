@@ -8,4 +8,4 @@ ARG PORT
 ENV PORT=$PORT
 EXPOSE 80
 
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port $PORT"]
+CMD ["sh", "-c", "uvicorn app.main:app --port $PORT"]

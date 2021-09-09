@@ -2,10 +2,24 @@ import os
 import asyncio
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 import json
 from app.meme import generateMemeImgs
 
 app = FastAPI()
+
+#allow origin
+origins = [
+    "http://localhost"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 #get meme images
 loop = asyncio.get_event_loop()  #create event loop
