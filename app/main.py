@@ -10,7 +10,8 @@ app = FastAPI()
 
 #allow origin
 origins = [
-    "http://localhost"
+    "https://key-support.tk/",
+    "http://line-key-support.test"
 ]
 
 app.add_middleware(
