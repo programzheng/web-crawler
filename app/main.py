@@ -10,7 +10,7 @@ app = FastAPI()
 
 #allow origin
 origins = [
-    "https://key-support.tk/",
+    "https://key-support.tk",
     "http://line-key-support.test"
 ]
 
