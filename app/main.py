@@ -8,11 +8,8 @@ from app.meme import generateMemeImgs
 
 app = FastAPI()
 
-#allow origin
-origins = [
-    "https://key-support.tk",
-    "http://line-key-support.test"
-]
+# allow origin
+origins = os.getenv('CORS_ALLOW_ORIGIN').split(',')
 
 app.add_middleware(
     CORSMiddleware,
@@ -22,19 +19,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-#get meme images
-loop = asyncio.get_event_loop()  #create event loop
+# get meme images
+loop = asyncio.get_event_loop()  # create event loop
 loop.create_task(generateMemeImgs(-1))
+
 
 @app.get("/")
 def read_root():
     return {"app-name": os.getenv("APP_NAME")}
+
 
 @app.get("/memes", response_class=JSONResponse)
 async def read_memes():
     f = open('meme-imgs_-1.json')
     data = json.load(f)
     return data
+
 
 @app.get("/meme/{page_limit}", response_class=JSONResponse)
 async def read_meme(page_limit):
